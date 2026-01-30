@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>MD5 Хешування</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <h1>MD5 Хешування (Лабораторна 2)</h1>
+
+ <h3>1 Обчислити хеш для рядка</h3>
+  <input id="input-string" type="text" placeholder="Введіть рядок">
+  <button onclick="hashString()">Обчислити хеш</button>
+  <pre id="output-hash-string"></pre>
+
+  <input id="save-path-string" type="text" placeholder="Шлях до файлу (наприклад output/myhash.txt)">
+  <button id="save-string-hash" style="display: none;" onclick="saveHash('string')">Зберегти хеш у файл</button>
+
+  <h3>2 Обчислити хеш для файлу</h3>
+  <input id="file-input" type="file">
+  <button onclick="hashFile()">Обчислити хеш файлу</button>
+  <pre id="output-hash-file"></pre>
+
+  <input id="save-path-file" type="text" placeholder="Шлях до файлу (наприклад output/filehash.txt)">
+  <button id="save-file-hash" style="display: none;" onclick="saveHash('file')">Зберегти хеш файлу</button>
+
+  <h3>3 Перевірити цілісність файлу</h3>
+  <input id="verify-filepath" type="text" placeholder="Шлях до файлу">
+  <input id="verify-hash" type="text" placeholder="Очікуваний MD5 хеш">
+  <button onclick="verifyFile()">Перевірити</button>
+  <p id="output-verify"></p>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>
