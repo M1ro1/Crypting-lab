@@ -8,89 +8,96 @@
 <body>
     <div class="container">
         <h1>Лабораторна робота №5: DSS</h1>
-        <button onclick="window.location.href='/'">На головну</button>
-        <hr>
+        <div class="card">
+            <button class="secondary" onclick="window.location.href='/'">На головну</button>
+            <hr>
 
-        <h3>1. Генерація та управління ключами</h3>
-        <button onclick="generateDSSKeys()">Генерувати пару ключів</button>
+            <h3>1. Генерація та управління ключами</h3>
+            <button onclick="generateDSSKeys()">Генерувати пару ключів</button>
 
-        <div class="form">
-            <label>Приватний ключ:</label>
-            <textarea id="dss-priv-key" rows="4" style="width:100%"></textarea>
-            <button onclick="downloadString('private.pem', 'dss-priv-key')">Зберегти у файл</button>
+            <div class="form">
+                <label for="dss-priv-key">Приватний ключ:</label>
+                <textarea id="dss-priv-key" rows="4"></textarea>
+                <button onclick="downloadString('private.pem', 'dss-priv-key')">Зберегти у файл</button>
 
-            <label>Публічний ключ:</label>
-            <textarea id="dss-pub-key" rows="4" style="width:100%"></textarea>
-            <button onclick="downloadString('public.pem', 'dss-pub-key')">Зберегти у файл</button>
+                <label for="dss-pub-key">Публічний ключ:</label>
+                <textarea id="dss-pub-key" rows="4"></textarea>
+                <button onclick="downloadString('public.pem', 'dss-pub-key')">Зберегти у файл</button>
 
-        </div>
-        <hr>
-
-        <h3>2. Створення підпису</h3>
-        <div class="form">
-            <label>Що підписуємо?</label>
-            <select id="sign-source" onchange="toggleSignSource()">
-                <option value="text">Рядок тексту</option>
-                <option value="file">Файл</option>
-            </select>
-
-            <div id="sign-text-block">
-                <input type="text" id="sign-input-text" placeholder="Введіть текст...">
             </div>
-            <div id="sign-file-block" style="display:none;">
-                <input type="file" id="sign-input-file">
-            </div>
+            <hr>
 
-            <button onclick="signDSS()">Підписати</button>
+            <h3>2. Створення підпису</h3>
+            <div class="form">
+                <label for="sign-source">Що підписуємо?</label>
+                <select id="sign-source" onchange="toggleSignSource()">
+                    <option value="text">Рядок тексту</option>
+                    <option value="file">Файл</option>
+                </select>
 
-            <label>Результат (HEX підпис):</label>
-            <textarea id="dss-signature-out" rows="3" style="width:100%" readonly></textarea>
-
-            <label>Збереження файлу:</label>
-                <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 10px;">
-
-                    <button onclick="saveWithDialog()" style="margin: 0;">
-                         Вибрати шлях та зберегти
-                    </button>
-
-                    <span id="save-status-text" style="color: #666; font-style: italic;">
-                        Файл не обрано
-                    </span>
+                <div id="sign-text-block">
+                    <label for="sign-input-text">Текст для підпису:</label>
+                    <input type="text" id="sign-input-text" placeholder="Введіть текст...">
                 </div>
-        <hr>
+                <div id="sign-file-block" style="display:none;">
+                    <label for="sign-input-file">Файл для підпису:</label>
+                    <input type="file" id="sign-input-file">
+                </div>
 
-        <h3>3. Перевірка підпису</h3>
-        <div class="form">
-            <label>Джерело даних:</label>
-            <select id="verify-source" onchange="toggleVerifySource()">
-                <option value="text">Рядок тексту</option>
-                <option value="file">Файл даних</option>
-            </select>
+                <button onclick="signDSS()">Підписати</button>
 
-            <div id="verify-text-block">
-                <input type="text" id="verify-input-text" placeholder="Текст для перевірки...">
+                <label for="dss-signature-out">Результат (HEX підпис):</label>
+                <textarea id="dss-signature-out" rows="3" readonly></textarea>
+
+                <label>Збереження файлу:</label>
+                    <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 10px;">
+
+                        <button onclick="saveWithDialog()" style="margin: 0;">
+                             Вибрати шлях та зберегти
+                        </button>
+
+                        <span id="save-status-text" style="color: #666; font-style: italic;">
+                            Файл не обрано
+                        </span>
+                    </div>
+            </div> <!-- close signature form -->
+            <hr>
+
+            <h3>3. Перевірка підпису</h3>
+            <div class="form">
+                <label for="verify-source">Джерело даних:</label>
+                <select id="verify-source" onchange="toggleVerifySource()">
+                    <option value="text">Рядок тексту</option>
+                    <option value="file">Файл даних</option>
+                </select>
+
+                <div id="verify-text-block">
+                    <label for="verify-input-text">Текст для перевірки:</label>
+                    <input type="text" id="verify-input-text" placeholder="Текст для перевірки...">
+                </div>
+                <div id="verify-file-block" style="display:none;">
+                    <label for="verify-input-file">Файл з даними:</label>
+                    <input type="file" id="verify-input-file">
+                </div>
+
+                <label for="sig-source-type">Джерело підпису:</label>
+                <select id="sig-source-type" onchange="toggleSigInput()">
+                    <option value="manual">Вставити HEX вручну</option>
+                    <option value="file">Завантажити файл підпису</option>
+                </select>
+
+                <div id="sig-manual-block">
+                    <label for="verify-sig-hex">HEX підпис:</label>
+                    <input type="text" id="verify-sig-hex" placeholder="Вставте HEX підпис сюди">
+                </div>
+                <div id="sig-file-upload-block" style="display:none;">
+                    <label for="verify-sig-file">Файл підпису (.txt/.hex):</label>
+                    <input type="file" id="verify-sig-file">
+                </div>
+
+                <button onclick="verifyDSS()">Перевірити підпис</button>
+                <p id="verify-result" style="font-weight:bold; font-size:18px;"></p>
             </div>
-            <div id="verify-file-block" style="display:none;">
-                <label>Файл з даними:</label>
-                <input type="file" id="verify-input-file">
-            </div>
-
-            <label>Джерело підпису:</label>
-            <select id="sig-source-type" onchange="toggleSigInput()">
-                <option value="manual">Вставити HEX вручну</option>
-                <option value="file">Завантажити файл підпису</option>
-            </select>
-
-            <div id="sig-manual-block">
-                <input type="text" id="verify-sig-hex" placeholder="Вставте HEX підпис сюди">
-            </div>
-            <div id="sig-file-upload-block" style="display:none;">
-                <label>Файл підпису (.txt/.hex):</label>
-                <input type="file" id="verify-sig-file">
-            </div>
-
-            <button onclick="verifyDSS()">Перевірити підпис</button>
-            <p id="verify-result" style="font-weight:bold; font-size:18px;"></p>
         </div>
     </div>
 

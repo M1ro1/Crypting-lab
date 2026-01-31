@@ -24,10 +24,9 @@ async function generate() {
         body: JSON.stringify(data)
     });
     const result = await res.json();
-    const displaySeq = result.sequence.slice(0, 100).join("\n") +
-                       (result.sequence.length > 100 ? "\n..." : "");
+    document.getElementById("output-seq").textContent = (result.sequence || []).slice(0, 100).join("\n") +
+                       ((result.sequence || []).length > 100 ? "\n..." : "");
 
-    document.getElementById("output-seq").textContent = displaySeq;
     document.getElementById("save-section").style.display = "block";
     window.generatedSequence = result.sequence;
     window.sequenceParams = params;
@@ -443,17 +442,26 @@ async function saveWithDialog() {
 
         const result = await res.json();
 
-        if (result.status === "success") {
-            statusText.textContent = `Збережено: ${result.path}`;
+        if (result.status === "success" && result.signature) {
+            const filename = result.filename || 'signature.txt';
+            const element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(result.signature));
+            element.setAttribute('download', filename);
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+
+            statusText.textContent = `Збережено: ${filename}`;
             statusText.style.color = "green";
-            alert(result.message);
+            alert(result.message || 'Збережено!');
         } else if (result.status === "cancel") {
             statusText.textContent = "Скасовано користувачем";
             statusText.style.color = "#666";
         } else {
             statusText.textContent = "Помилка збереження";
             statusText.style.color = "red";
-            alert(result.error);
+            alert(result.error || 'Невідома помилка');
         }
 
     } catch (e) {

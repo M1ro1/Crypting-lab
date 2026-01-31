@@ -8,25 +8,30 @@
 <body>
     <div class="container">
         <h1>Лабораторна робота №3</h1>
-        <h3>Блоковий шифр RC5 (64/16/16)</h3>
 
-        <div class="form">
-            <label>Парольна фраза (Ключ):</label>
-            <input type="password" id="rc5-password" placeholder="Введіть секретний пароль">
+        <div class="card">
+            <h3>Блоковий шифр RC5 (64/16/16)</h3>
 
-            <hr>
+            <div class="form">
+                <label for="rc5-password">Парольна фраза (Ключ):</label>
+                <input type="password" id="rc5-password" placeholder="Введіть секретний пароль">
 
-            <h3>Шифрування</h3>
-            <input type="file" id="encrypt-file-input">
-            <button onclick="processRC5('encrypt')">Зашифрувати файл</button>
+                <hr>
 
-            <hr>
+                <h3>Шифрування</h3>
+                <label for="encrypt-file-input">Файл для шифрування:</label>
+                <input type="file" id="encrypt-file-input">
+                <button onclick="processRC5('encrypt')">Зашифрувати файл</button>
 
-            <h3>Дешифрування</h3>
-            <input type="file" id="decrypt-file-input">
-            <button onclick="processRC5('decrypt')">Розшифрувати файл</button>
+                <hr>
 
-            <div id="rc5-result" style="margin-top: 20px;"></div>
+                <h3>Дешифрування</h3>
+                <label for="decrypt-file-input">Файл для розшифрування:</label>
+                <input type="file" id="decrypt-file-input">
+                <button onclick="processRC5('decrypt')">Розшифрувати файл</button>
+
+                <div id="rc5-result" style="margin-top: 20px;"></div>
+            </div>
         </div>
     </div>
     <script src="/static/script.js"></script>

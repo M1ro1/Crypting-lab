@@ -6,29 +6,37 @@
   <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-  <h1>MD5 Хешування (Лабораторна 2)</h1>
+  <div class="container">
+    <h1>MD5 Хешування (Лабораторна 2)</h1>
 
- <h3>1 Обчислити хеш для рядка</h3>
-  <input id="input-string" type="text" placeholder="Введіть рядок">
-  <button onclick="hashString()">Обчислити хеш</button>
-  <pre id="output-hash-string"></pre>
+    <div class="card">
+      <h3>1 Обчислити хеш для рядка</h3>
+      <input id="input-string" type="text" placeholder="Введіть рядок">
+      <button onclick="hashString()">Обчислити хеш</button>
+      <pre id="output-hash-string"></pre>
 
-  <input id="save-path-string" type="text" placeholder="Шлях до файлу (наприклад output/myhash.txt)">
-  <button id="save-string-hash" style="display: none;" onclick="saveHash('string')">Зберегти хеш у файл</button>
+      <input id="save-path-string" type="text" placeholder="Шлях до файлу (наприклад output/myhash.txt)">
+      <button id="save-string-hash" style="display: none;" onclick="saveHash('string')">Зберегти хеш у файл</button>
 
-  <h3>2 Обчислити хеш для файлу</h3>
-  <input id="file-input" type="file">
-  <button onclick="hashFile()">Обчислити хеш файлу</button>
-  <pre id="output-hash-file"></pre>
+      <hr>
 
-  <input id="save-path-file" type="text" placeholder="Шлях до файлу (наприклад output/filehash.txt)">
-  <button id="save-file-hash" style="display: none;" onclick="saveHash('file')">Зберегти хеш файлу</button>
+      <h3>2 Обчислити хеш для файлу</h3>
+      <input id="file-input" type="file">
+      <button onclick="hashFile()">Обчислити хеш файлу</button>
+      <pre id="output-hash-file"></pre>
 
-  <h3>3 Перевірити цілісність файлу</h3>
-  <input id="verify-filepath" type="text" placeholder="Шлях до файлу">
-  <input id="verify-hash" type="text" placeholder="Очікуваний MD5 хеш">
-  <button onclick="verifyFile()">Перевірити</button>
-  <p id="output-verify"></p>
+      <input id="save-path-file" type="text" placeholder="Шлях до файлу (наприклад output/filehash.txt)">
+      <button id="save-file-hash" style="display: none;" onclick="saveHash('file')">Зберегти хеш файлу</button>
+
+      <hr>
+
+      <h3>3 Перевірити цілісність файлу</h3>
+      <input id="verify-filepath" type="text" placeholder="Шлях до файлу">
+      <input id="verify-hash" type="text" placeholder="Очікуваний MD5 хеш">
+      <button onclick="verifyFile()">Перевірити</button>
+      <p id="output-verify"></p>
+    </div>
+  </div>
 
   <script src="/static/script.js"></script>
 </body>

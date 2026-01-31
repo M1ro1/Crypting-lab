@@ -6,14 +6,22 @@
   <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-  <h1>Виберіть лабораторну роботу</h1>
+  <div class="container">
+    <div class="header">
+      <h1>Меню лабораторних</h1>
+    </div>
 
-  <div class="menu">
-    <button onclick="window.location.href='/lab1'">Лабораторна 1</button>
-    <button onclick="window.location.href='/lab2'">Лабораторна 2</button>
-    <button onclick="window.location.href='/lab3'">Лабораторна 3</button>
-    <button onclick="window.location.href='/lab4'">Лабораторна 4 </button>
-    <button onclick="window.location.href='/lab5'">Лабораторна 5</button>
+    <div class="card">
+      <p>Оберіть лабораторну роботу зі списку нижче:</p>
+      <div class="menu">
+        <button onclick="window.location.href='/lab1'">Лабораторна 1</button>
+        <button onclick="window.location.href='/lab2'">Лабораторна 2</button>
+        <button onclick="window.location.href='/lab3'">Лабораторна 3</button>
+        <button onclick="window.location.href='/lab4'">Лабораторна 4</button>
+        <button onclick="window.location.href='/lab5'">Лабораторна 5</button>
+      </div>
+    </div>
+
   </div>
 </body>
 </html>

@@ -9,32 +9,42 @@
   </style>
 </head>
 <body>
-  <h1>Генератор псевдовипадкових чисел (Лемера)</h1>
+  <div class="container">
+    <h1>Генератор псевдовипадкових чисел (Лемера)</h1>
 
-<div class="form">
-    <label for="a">a (множник): <input id="a" type="number" value="216"></label>
-    <label for="c">c (доданок зсуву): <input id="c" type="number" value="55"></label>
-    <label for="m">m (модуль): <input id="m" type="number" value="524287"></label>
-    <label for="x0">x₀ (початкове значення): <input id="x0" type="number" value="1024"></label>
-</div>
+    <div class="card form">
+      <label for="a">a (множник)</label>
+      <input id="a" type="number" value="216">
 
-  <h3>1 Згенерувати послідовність</h3>
-  <input id="n" type="number" placeholder="кількість чисел">
-  <button onclick="generate()">Генерувати</button>
-  <pre id="output-seq"></pre>
-  <div id="save-section">
-    <input id="filepath" type="text" placeholder="Шлях до файлу (наприклад, C:\users\file.txt)">
-    <button onclick="saveSequence()">Зберегти послідовність</button>
+      <label for="c">c (доданок зсуву)</label>
+      <input id="c" type="number" value="55">
+
+      <label for="m">m (модуль)</label>
+      <input id="m" type="number" value="524287">
+
+      <label for="x0">x₀ (початкове значення)</label>
+      <input id="x0" type="number" value="1024">
+
+      <h3>1 Згенерувати послідовність</h3>
+      <input id="n" type="number" placeholder="кількість чисел">
+      <button onclick="generate()">Генерувати</button>
+      <pre id="output-seq"></pre>
+
+      <div id="save-section">
+        <input id="filepath" type="text" placeholder="Шлях до файлу (наприклад, C:\\users\\file.txt)">
+        <button onclick="saveSequence()">Зберегти послідовність</button>
+      </div>
+
+      <h3>2 Знайти період</h3>
+      <button onclick="findPeriod()">Знайти період</button>
+      <p id="output-period"></p>
+
+      <h3>3 Тест Чезаро</h3>
+      <input id="samples" type="number" placeholder="кількість пар">
+      <button onclick="cesaro()">Запустити тест</button>
+      <p id="output-cesaro"></p>
+    </div>
   </div>
-
-  <h3>2 Знайти період</h3>
-  <button onclick="findPeriod()">Знайти період</button>
-  <p id="output-period"></p>
-
-  <h3>3 Тест Чезаро</h3>
-  <input id="samples" type="number" placeholder="кількість пар">
-  <button onclick="cesaro()">Запустити тест</button>
-  <p id="output-cesaro"></p>
 
   <script src="/static/script.js"></script>
 </body>

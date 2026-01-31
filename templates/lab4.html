@@ -9,56 +9,58 @@
 <body>
   <div class="container">
     <h1>Лабораторна робота №4 (RSA)</h1>
-    <button onclick="window.location.href='/'">На головну</button>
-    <hr>
+    <div class="card">
+      <button class="secondary" onclick="window.location.href='/'">На головну</button>
+      <hr>
 
-    <h3>1. Генерація ключів</h3>
-    <p>Згенеруйте пару ключів (Публічний та Приватний). Збережіть їх для подальшого використання.</p>
-    <button onclick="generateRSAKeys()">Згенерувати ключі</button>
+      <h3>1. Генерація ключів</h3>
+      <p>Згенеруйте пару ключів (Публічний та Приватний). Збережіть їх для подальшого використання.</p>
+      <button onclick="generateRSAKeys()">Згенерувати ключі</button>
 
-    <div class="form">
-        <label>Публічний ключ:</label>
-        <textarea id="rsa-pub-key" rows="5" style="width: 100%; border-radius:6px; border:1px solid #2575fc;" readonly></textarea>
-        <button onclick="downloadString('rsa_public.pem', 'rsa-pub-key')">Завантажити файл ключа</button>
+      <div class="form">
+          <label for="rsa-pub-key">Публічний ключ:</label>
+          <textarea id="rsa-pub-key" rows="5" readonly></textarea>
+          <button onclick="downloadString('rsa_public.pem', 'rsa-pub-key')">Завантажити файл ключа</button>
 
-        <label>Приватний ключ:</label>
-        <textarea id="rsa-priv-key" rows="5" style="width: 100%; border-radius:6px; border:1px solid #2575fc;" readonly></textarea>
-        <button onclick="downloadString('rsa_private.pem', 'rsa-priv-key')">Завантажити файл ключа</button>
+          <label for="rsa-priv-key">Приватний ключ:</label>
+          <textarea id="rsa-priv-key" rows="5" readonly></textarea>
+          <button onclick="downloadString('rsa_private.pem', 'rsa-priv-key')">Завантажити файл ключа</button>
+      </div>
+
+      <hr>
+
+      <h3>2. Шифрування файлу (RSA)</h3>
+      <div class="form">
+          <label for="rsa-enc-file">Виберіть файл для шифрування:</label>
+          <input type="file" id="rsa-enc-file">
+
+          <label for="rsa-key-for-enc">Введіть Публічний ключ (або згенеруйте вище):</label>
+          <textarea id="rsa-key-for-enc" rows="3" placeholder="-----BEGIN PUBLIC KEY-----..."></textarea>
+
+          <label for="rsa-path-enc">Куди зберегти зашифрований файл (повний шлях):</label>
+          <input type="text" id="rsa-path-enc" placeholder="Наприклад: D:\\Labs\\encrypted_file.bin">
+
+          <button onclick="processRSA('encrypt')">Зашифрувати файл</button>
+      </div>
+
+      <hr>
+
+      <h3>3. Дешифрування файлу (RSA)</h3>
+      <div class="form">
+          <label for="rsa-dec-file">Виберіть зашифрований файл:</label>
+          <input type="file" id="rsa-dec-file">
+
+          <label for="rsa-key-for-dec">Введіть Приватний ключ (або згенеруйте вище):</label>
+          <textarea id="rsa-key-for-dec" rows="3" placeholder="-----BEGIN PRIVATE KEY-----..."></textarea>
+
+          <label for="rsa-path-dec">Куди зберегти розшифрований файл (повний шлях):</label>
+          <input type="text" id="rsa-path-dec" placeholder="Наприклад: D:\\Labs\\decrypted_file.txt">
+
+          <button onclick="processRSA('decrypt')">Розшифрувати файл</button>
+      </div>
+
+      <div id="rsa-result"></div>
     </div>
-
-    <hr>
-
-    <h3>2. Шифрування файлу (RSA)</h3>
-    <div class="form">
-        <label>Виберіть файл для шифрування:</label>
-        <input type="file" id="rsa-enc-file">
-
-        <label>Введіть Публічний ключ (або згенеруйте вище):</label>
-        <textarea id="rsa-key-for-enc" rows="3" style="width: 100%; border-radius:6px; border:1px solid #2575fc;" placeholder="-----BEGIN PUBLIC KEY-----..."></textarea>
-
-        <label>Куди зберегти зашифрований файл (повний шлях):</label>
-        <input type="text" id="rsa-path-enc" placeholder="Наприклад: D:\Labs\encrypted_file.bin" style="width: 100%; margin-bottom: 10px;">
-
-        <button onclick="processRSA('encrypt')">Зашифрувати файл</button>
-    </div>
-
-    <hr>
-
-    <h3>3. Дешифрування файлу (RSA)</h3>
-    <div class="form">
-        <label>Виберіть зашифрований файл:</label>
-        <input type="file" id="rsa-dec-file">
-
-        <label>Введіть Приватний ключ (або згенеруйте вище):</label>
-        <textarea id="rsa-key-for-dec" rows="3" style="width: 100%; border-radius:6px; border:1px solid #2575fc;" placeholder="-----BEGIN PRIVATE KEY-----..."></textarea>
-
-        <label>Куди зберегти розшифрований файл (повний шлях):</label>
-        <input type="text" id="rsa-path-dec" placeholder="Наприклад: D:\Labs\decrypted_file.txt" style="width: 100%; margin-bottom: 10px;">
-
-        <button onclick="processRSA('decrypt')">Розшифрувати файл</button>
-    </div>
-
-    <div id="rsa-result" style="margin-top: 20px; font-weight: bold;"></div>
   </div>
 </body>
 </html>

@@ -1,65 +1,133 @@
+:root{
+  --bg:#f6f8ff;
+  --card:#ffffff;
+  --accent:#2575fc;
+  --accent-2:#6a11cb;
+  --muted:#6b7280;
+  --text:#0f1724;
+  --glass: rgba(255,255,255,0.6);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
 body {
-  font-family: "Segoe UI", sans-serif;
-  background: #ffffff;
-  color: #1b1b3a;
-  text-align: left;
-  padding: 40px;
+  font-family: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial;
+  background: linear-gradient(180deg, var(--bg) 0%, #eef2ff 100%);
+  color: var(--text);
+  margin:0;
+  padding:30px 20px;
 }
 
-h1, h3 {
-  color: #2575fc;
+.header {
+  max-width:1100px;
+  margin:0 auto 24px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 }
-
-.form label {
-  display: block;
-  margin: 10px 0 5px;
-  color: #1b1b3a;
-  font-weight: 500;
-}
-
-input {
-  padding: 8px;
-  margin-bottom: 10px;
-  border-radius: 6px;
-  border: 1px solid #2575fc;
-  width: 250px;
-  font-size: 14px;
-  color: #1b1b3a;
-}
-
-button {
-  background: linear-gradient(45deg, #2575fc, #6a11cb);
-  color: white;
-  border: none;
-  padding: 10px 25px;
-  margin: 10px 5px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 15px;
-  transition: all 0.2s ease;
-}
-
-button:hover {
-  transform: scale(1.05);
-  background: linear-gradient(45deg, #6a11cb, #2575fc);
-}
-
-pre {
-  background: #f3f6ff;
-  padding: 12px;
-  border-radius: 10px;
-  max-height: 250px;
-  overflow-y: auto;
-  color: #1b1b3a;
-  border: 1px solid #cfd9f2;
-}
+.header h1{font-size:20px; margin:0; color:var(--accent)}
 
 .container {
-  max-width: 600px;
+  max-width:980px;
   margin: 0 auto;
+  background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.8));
+  border-radius:14px;
+  padding:24px 28px;
+  box-shadow: 0 8px 30px rgba(15,23,36,0.08);
 }
 
-hr {
-  border: 1px solid #cfd9f2;
-  margin: 20px 0;
+.menu{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap:16px;
+  margin-top:18px;
 }
+.menu button{
+  padding:18px 14px;
+  font-size:16px;
+  border-radius:10px;
+  height:60px;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow: 0 6px 18px rgba(39,71,109,0.06);
+}
+
+.card{
+  background: var(--card);
+  border-radius:10px;
+  padding:18px;
+  margin-bottom:18px;
+  border:1px solid rgba(37,117,252,0.06);
+}
+
+h1{font-size:24px; color:var(--accent); margin:0 0 12px}
+h3{font-size:18px; color:#233d7a; margin:18px 0 8px}
+
+.form label{
+  display:block;
+  margin-bottom:8px;
+  color:var(--muted);
+  font-weight:600;
+}
+
+.form input[type="text"], .form input[type="number"], input[type="password"], .form textarea, select{
+  padding:10px 12px;
+  margin-bottom:12px;
+  border-radius:8px;
+  border:1px solid rgba(37,117,252,0.18);
+  width:100%;
+  font-size:14px;
+  color:var(--text);
+  background:linear-gradient(180deg, #fff, #fbfdff);
+}
+
+input[type="file"]{
+  padding:8px 6px;
+}
+
+button{
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 9px;
+  cursor: pointer;
+  font-size:15px;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+button.secondary{
+  background: transparent;
+  color: var(--accent);
+  border:1px solid rgba(37,117,252,0.12);
+}
+button:hover{transform: translateY(-2px); box-shadow:0 10px 24px rgba(37,117,252,0.12)}
+
+textarea{resize:vertical; padding:12px}
+
+pre{
+  background: #f8fbff;
+  padding: 12px;
+  border-radius:8px;
+  max-height:320px;
+  overflow:auto;
+  color:var(--text);
+  border:1px solid rgba(37,117,252,0.06);
+}
+
+hr{border:none; height:1px; background: linear-gradient(90deg, transparent, rgba(37,117,252,0.08), transparent); margin:18px 0}
+
+.footer-note{font-size:13px;color:var(--muted);margin-top:12px}
+
+@media (max-width:600px){
+  .container{padding:16px}
+  h1{font-size:20px}
+  .header h1{font-size:16px}
+  .menu{grid-template-columns: 1fr 1fr}
+}
+
+/* small utility */
+.mt-8{margin-top:8px}
+.mb-8{margin-bottom:8px}
+
+/* ensure inputs inside inline labels keep layout */
+.form label input{margin-left:8px; width:auto}
+/* end */

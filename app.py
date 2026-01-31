@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, send_from_directory, send_file
+from flask import Flask, render_template, request, jsonify
 from backend.generator import lcg_generate, find_period
 from backend.cesaro_test import cesaro_test
 from backend.md5_hash import hash_string, hash_file, verify_file
@@ -6,9 +6,7 @@ from backend.rc5 import decrypt_file_rc5, encrypt_file_rc5
 from backend.rsa import encrypt_file_rsa, decrypt_file_rsa, generate_rsa_keys
 import os
 from backend.dss import generate_dss_keys, dss_sign, dss_verify
-import tkinter as tk
-from tkinter import filedialog
-import json
+
 app = Flask(__name__)
 
 @app.route("/")
@@ -337,43 +335,21 @@ def save_signature_file():
     return jsonify({"message": f"Збережено у {path}"})
 
 
-def open_save_dialog_native():
-    root = tk.Tk()
-    root.withdraw()
-    root.attributes('-topmost', True)
-
-    file_path = filedialog.asksaveasfilename(
-        title="Зберегти файл підпису",
-        defaultextension=".txt",
-        filetypes=[("Text files", "*.txt"), ("All files", "*.*")]
-    )
-    root.destroy()
-    return file_path
-
-
 @app.route("/save_signature_local", methods=["POST"])
 def save_signature_local():
     data = request.get_json()
     signature_text = data.get("signature")
+    filename = data.get("filename", "signature.txt")
 
     if not signature_text:
-        return jsonify({"error": "Немає підпису для збереження!"})
+        return jsonify({"error": "Немає підпису для збереження!", "status": "error"})
 
-    path = open_save_dialog_native()
-
-    if not path:
-        return jsonify({"message": "Збереження скасовано користувачем", "status": "cancel"})
-
-    try:
-        with open(path, "w", encoding="utf-8") as f:
-            f.write(signature_text)
-        return jsonify({
-            "message": f"Успішно збережено!",
-            "path": path,
-            "status": "success"
-        })
-    except Exception as e:
-        return jsonify({"error": str(e), "status": "error"})
+    return jsonify({
+        "message": "Готово для завантаження",
+        "status": "success",
+        "filename": filename,
+        "signature": signature_text
+    })
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host="0.0.0.0", port=5000)
