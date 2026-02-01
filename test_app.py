@@ -9,6 +9,7 @@ from backend.cesaro_test import cesaro_test
 from backend.md5_hash import hash_string, hash_file, verify_file
 from backend.rc5 import RC5, pad_data, unpad_data, encrypt_file_rc5, decrypt_file_rc5
 from backend.rsa import generate_rsa_keys, encrypt_file_rsa, decrypt_file_rsa
+
 def test_lcg_generate():
     seq = lcg_generate(a=5, c=3, m=16, x0=1, n=5)
     assert len(seq) == 5
@@ -17,7 +18,7 @@ def test_lcg_generate():
 
 
 def test_find_period():
-    p = find_period(a=1, c=1, m=4, x0=0)
+    p = find_period(a=1,c=1,m=4,x0=0)
     assert p == 4
 
 
