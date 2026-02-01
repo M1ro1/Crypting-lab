@@ -85,7 +85,7 @@ def rc5_decrypt():
             "filename": original_name,
             "path": output_path
         })
-    except ValueError as ve:
+    except ValueError:
         return jsonify({"error": "Помилка: Невірний пароль або файл пошкоджено."})
     except Exception as e:
         return jsonify({"error": f"Системна помилка: {str(e)}"})

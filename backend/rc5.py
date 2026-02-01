@@ -42,7 +42,8 @@ class RC5:
     def _key_exp(key):
         u = W_BYTES
         c = len(key) // u
-        if len(key) % u != 0: c += 1
+        if len(key) % u != 0:
+            c += 1
 
         L = [0] * c
         for i in range(len(key)):
